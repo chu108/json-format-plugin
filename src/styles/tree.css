@@ -1,0 +1,62 @@
+/* 右侧结果区：逐行结构，行号由 CSS counter 自动维护 */
+
+.tree-view {
+  height: 100%;
+  padding: 12px 0 48px;
+  overflow: auto;
+  background: var(--bg-panel);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: var(--line-height);
+  counter-reset: json-line;
+}
+
+.tree-view .line {
+  display: flex;
+  align-items: flex-start;
+  counter-increment: json-line;
+}
+
+.tree-view .line:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.line .ln {
+  flex: 0 0 var(--gutter-width);
+  padding-right: 10px;
+  color: var(--text-dim);
+  font-size: 12px;
+  text-align: right;
+  user-select: none;
+}
+
+.line .ln::before {
+  content: counter(json-line);
+}
+
+.line-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-right: 16px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.node-toggle {
+  display: inline-block;
+  width: 14px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+  transition: color 120ms ease;
+}
+
+.node-toggle:hover {
+  color: var(--text-strong);
+}
+
+.node-toggle--empty {
+  visibility: hidden;
+  cursor: default;
+}

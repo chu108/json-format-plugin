@@ -1,0 +1,221 @@
+/* 深色主题：颜色、字体、布局与通用控件样式 */
+
+:root {
+  --bg: #1b1b1b;
+  --bg-panel: #1e1e1e;
+  --bg-toolbar: #252526;
+  --bg-elevated: #2d2d30;
+  --bg-hover: #3c3c3c;
+  --border: #333333;
+  --border-strong: #3c3c3c;
+  --text: #d4d4d4;
+  --text-dim: #858585;
+  --text-strong: #ffffff;
+  --accent: #0e639c;
+  --accent-strong: #1177bb;
+  --danger: #f48771;
+
+  --tk-key: #9cdcfe;
+  --tk-string: #ce9178;
+  --tk-number: #b5cea8;
+  --tk-bool: #569cd6;
+  --tk-null: #4ec9b0;
+  --tk-punc: #7f848e;
+  --tk-index: #6a9955;
+
+  --line-height: 20px;
+  --gutter-width: 52px;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-ui: Roboto, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 保证 hidden 属性始终有效（避免被 class 上的 display 覆盖） */
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全屏左右分栏，无任何多余区域 */
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.panel {
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg-panel);
+}
+
+.divider {
+  flex: 0 0 1px;
+  background: var(--border-strong);
+}
+
+.panel-body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* 按钮行 */
+.toolbar {
+  display: flex;
+  flex: 0 0 44px;
+  align-items: center;
+  gap: 4px;
+  height: 44px;
+  padding: 0 10px;
+  background: linear-gradient(180deg, #2a2a2c 0%, var(--bg-toolbar) 100%);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.tool-btn {
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease,
+    transform 80ms ease;
+}
+
+.tool-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-strong);
+}
+
+.tool-btn:active {
+  transform: translateY(1px);
+  background: var(--accent);
+  border-color: var(--accent-strong);
+  color: var(--text-strong);
+}
+
+.tool-btn:focus-visible {
+  outline: 1px solid var(--accent-strong);
+  outline-offset: 1px;
+}
+
+/* 语法着色（左右两侧共用） */
+.tk-key {
+  color: var(--tk-key);
+}
+
+.tk-string {
+  color: var(--tk-string);
+}
+
+.tk-number {
+  color: var(--tk-number);
+}
+
+.tk-bool {
+  color: var(--tk-bool);
+}
+
+.tk-null {
+  color: var(--tk-null);
+}
+
+.tk-punc {
+  color: var(--tk-punc);
+}
+
+.tk-index {
+  color: var(--tk-index);
+}
+
+.tk-count {
+  margin-left: 6px;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b4b4b;
+  border: 2px solid var(--bg-panel);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5f5f5f;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* 空状态与提示条 */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 32px;
+  color: var(--text-dim);
+  font-size: 13px;
+  text-align: center;
+}
+
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: rgba(45, 45, 48, 0.96);
+  color: var(--text-strong);
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  pointer-events: none;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast[data-tone='warn'] {
+  border-color: var(--danger);
+  color: var(--danger);
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON 格式化</title>
+    <link rel="stylesheet" href="./styles/theme.css" />
+    <link rel="stylesheet" href="./styles/editor.css" />
+    <link rel="stylesheet" href="./styles/tree.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <header class="toolbar" id="left-toolbar"></header>
+        <div class="panel-body" id="left-editor"></div>
+      </section>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <section class="panel">
+        <header class="toolbar" id="right-toolbar"></header>
+        <div class="panel-body" id="right-view"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="./entry/index.js"></script>
+  </body>
+</html>

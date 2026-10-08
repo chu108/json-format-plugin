@@ -1,0 +1,15 @@
+{
+  "name": "json-format-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome MV3 extension: format, minify and browse JSON",
+  "scripts": {
+    "build": "tsc && npm run copy-files",
+    "watch": "tsc --watch",
+    "copy-files": "mkdir -p dist/styles && cp manifest.json dist/ && cp src/index.html dist/ && cp src/styles/*.css dist/styles/"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.306",
+    "typescript": "^4.9.5"
+  }
+}
